@@ -68,7 +68,7 @@ let animals = [
     {
         image:'./images/monkey1.jpg',
         type:'monkey',
-        name:'rascal',
+        name:'george',
         description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis eros non diam congue porttitor sit amet ut dui. Nam arcu nisl, suscipit non lacinia ut, venenatis eget ex. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec a pulvinar odio. Ut at enim mi. Nunc nec mattis purus. Curabitur pharetra dignissim mi a accumsan. Vestibulum non placerat nisl. Suspendisse consequat pharetra neque, ac lobortis nunc laoreet eu. Nullam efficitur nec justo nec lacinia. Nam pretium nunc non lectus bibendum vehicula.',
         animalId:'h873d',
 
@@ -76,7 +76,7 @@ let animals = [
     {
         image:'./images/monkey2.jpg',
         type:'monkey',
-        name:'rascal',
+        name:'ronald',
         description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis eros non diam congue porttitor sit amet ut dui. Nam arcu nisl, suscipit non lacinia ut, venenatis eget ex. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec a pulvinar odio. Ut at enim mi. Nunc nec mattis purus. Curabitur pharetra dignissim mi a accumsan. Vestibulum non placerat nisl. Suspendisse consequat pharetra neque, ac lobortis nunc laoreet eu. Nullam efficitur nec justo nec lacinia. Nam pretium nunc non lectus bibendum vehicula.',
         animalId:'j89r3',
 
@@ -84,7 +84,7 @@ let animals = [
     {
         image:'./images/monkey3.jpg',
         type:'monkey',
-        name:'rascal',
+        name:'patrick',
         description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis eros non diam congue porttitor sit amet ut dui. Nam arcu nisl, suscipit non lacinia ut, venenatis eget ex. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec a pulvinar odio. Ut at enim mi. Nunc nec mattis purus. Curabitur pharetra dignissim mi a accumsan. Vestibulum non placerat nisl. Suspendisse consequat pharetra neque, ac lobortis nunc laoreet eu. Nullam efficitur nec justo nec lacinia. Nam pretium nunc non lectus bibendum vehicula.',
         animalId:'nu98d',
 
@@ -92,7 +92,7 @@ let animals = [
     {
         image:'./images/monkey4.jpg',
         type:'monkey',
-        name:'rascal',
+        name:'jesus',
         description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis eros non diam congue porttitor sit amet ut dui. Nam arcu nisl, suscipit non lacinia ut, venenatis eget ex. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec a pulvinar odio. Ut at enim mi. Nunc nec mattis purus. Curabitur pharetra dignissim mi a accumsan. Vestibulum non placerat nisl. Suspendisse consequat pharetra neque, ac lobortis nunc laoreet eu. Nullam efficitur nec justo nec lacinia. Nam pretium nunc non lectus bibendum vehicula.',
         animalId:'j89d3',
 
@@ -102,10 +102,47 @@ let animals = [
 ]
 
 export default class Animals extends Component {
+    constructor() {
+        super();
+        this.state = {
+            animal: {
+                image:'',
+                type:'',
+                name:'',
+                description:'',
+                animalId:''
+            },
+            likes:[],
+            dislikes:[]
+        }
+    }
+
+
+
+
     render() {
         return (
             <div>
-                
+                <div className="ui card">
+                    <div className='image'>
+                        <img src="" alt=""/>
+                    </div>
+                    <div>
+                        <a href=""></a>
+                        <div>
+                            <span>join in 2013</span>
+                        </div>
+                        <div className="description">
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consectetur nesciunt sunt perspiciatis perferendis facere quas aspernatur aliquam rem quia voluptas culpa, nihil consequuntur fuga natus nisi aut magnam inventore nulla.
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <a>
+                        <i></i>
+                        22 friends
+                    </a>
+                </div>
             </div>
         )
     }
