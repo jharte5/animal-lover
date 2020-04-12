@@ -145,11 +145,24 @@ export default class Animals extends Component {
         })
     }
 
-    onDelete(id){
+    onDeleteAll(id){
         const updateAnimals = this.state.animals.filter((item) => item.animalId !== id);
+        const updateLikes = this.state.likes.filter((item) => item.animalId !== id);
+        const updateDislikes = this.state.dislikes.filter((item) => item.animalId !== id);
+
         // this is how to update your state
-        this.setState({animals: updateAnimals});
+        this.setState({animals: updateAnimals, likes: updateLikes, dislikes: updateDislikes});
         console.log('Delete item with id:', id);
+    }
+
+    onDeleteLike(id){
+        const updateLikes = this.state.likes.filter((item) => item.animalId !== id);
+        this.setState({likes: updateLikes})
+    }
+    
+    onDeleteDislike(id){
+        const updateDislikes = this.state.dislikes.filter((item) => item.animalId !== id);
+        this.setState({dislikes: updateDislikes})
     }
 
     render() {
@@ -186,7 +199,7 @@ export default class Animals extends Component {
                             className="ui primary button"
                             style={{ margin: '10px 15px'}}
                             onClick={() => {
-                                return this.onDelete(animalId);
+                                return this.onDeleteAll(animalId);
                             }}
                             >Discard</button>
                         </div>
@@ -204,7 +217,10 @@ export default class Animals extends Component {
                                     <div>
                                         <img 
                                         style={{width: '150px',height:'150px'}}
-                                        src={item.image}/>
+                                        src={item.image}
+                                        onClick={() => {
+                                            return this.onDeleteLike(item.animalId);
+                                        }}/>
                                         {item.name}
                                     </div>
                                 </div>
@@ -218,7 +234,10 @@ export default class Animals extends Component {
                                 <div>
                                     <div>
                                         <img style={{width: '150px', height: '150px'}} 
-                                        src={item.image}/>
+                                        src={item.image}
+                                        onClick={() => {
+                                            return this.onDeleteDislike(item.animalId);
+                                        }}/>
                                         {item.name}
                                     </div>
                                 </div>
