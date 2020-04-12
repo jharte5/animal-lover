@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { findByLabelText } from '@testing-library/react';
 
 let animals = [
     {
@@ -105,6 +106,7 @@ export default class Animals extends Component {
     constructor() {
         super();
         this.state = {
+            animals,
             animal: {
                 image:'',
                 type:'',
@@ -117,33 +119,114 @@ export default class Animals extends Component {
         }
     }
 
+    onLike(id){
+        const likeAnimals = this.state.animals.filter((item) => item.animalId === id);
 
+        console.log(likeAnimals)
+        const newLikes = [...this.state.likes]
+        if (!newLikes.includes(likeAnimals[0])){
+            newLikes.push(likeAnimals[0])
+        }
+        this.setState({likes: newLikes}, () => {
+            console.log(this.state.likes)
+        })
+    }
 
+    onDislike(id){
+        const likeAnimals = this.state.animals.filter((item) => item.animalId === id);
+
+        console.log(likeAnimals)
+        const unLikes = [...this.state.dislikes]
+        if (!unLikes.includes(likeAnimals[0])){
+            unLikes.push(likeAnimals[0])
+        }
+        this.setState({dislikes: unLikes}, () => {
+            console.log(this.state.likes)
+        })
+    }
+
+    onDelete(id){
+        const updateAnimals = this.state.animals.filter((item) => item.animalId !== id);
+        // this is how to update your state
+        this.setState({animals: updateAnimals});
+        console.log('Delete item with id:', id);
+    }
 
     render() {
         return (
+            <div style={{
+                display: 'flex'
+            }}>
+                <div style={{display: 'flex', flexWrap: 'wrap',}}>
+                {this.state.animals.map(({image, type, name, description, animalId},i) => {
+                    return(
+                        <div className="ui card" style={{
+                            margin:'20px'
+                        }}>
+                        <div className='image'>
+                            <img src={image}/>
+                        </div>
+                        <div>
+                            <div>{type}</div>
+                            <div>{name}</div>
+                            <div className="description">{description}</div>
+                            <div>{animalId}</div>
+                        </div>
+                        <div>
+                            <button
+                            onClick={()=> {
+                                return this.onLike(animalId)
+                            }}
+                            >Like</button>
+                            <button
+                            onClick={()=>{
+                                return this.onDislike(animalId)
+                            }}>Dislike</button>
+                            <button
+                            className="ui primary button"
+                            style={{ margin: '10px 15px'}}
+                            onClick={() => {
+                                return this.onDelete(animalId);
+                            }}
+                            >Discard</button>
+                        </div>
+                    </div>
+                    )})
+                }
+            </div>
             <div>
-                <div className="ui card">
-                    <div className='image'>
-                        <img src="" alt=""/>
+                <div >
+                    <div>
+                        <h2>Likes</h2>
+                        {this.state.likes.map(item => {
+                            return(
+                                <div>
+                                    <div>
+                                        <img 
+                                        style={{width: '150px',height:'150px'}}
+                                        src={item.image}/>
+                                        {item.name}
+                                    </div>
+                                </div>
+                            )
+                        })}
                     </div>
                     <div>
-                        <a href=""></a>
-                        <div>
-                            <span>join in 2013</span>
-                        </div>
-                        <div className="description">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consectetur nesciunt sunt perspiciatis perferendis facere quas aspernatur aliquam rem quia voluptas culpa, nihil consequuntur fuga natus nisi aut magnam inventore nulla.
-                        </div>
+                        <h2>Dislikes</h2>
+                        {this.state.dislikes.map(item => {
+                            return(
+                                <div>
+                                    <div>
+                                        <img style={{width: '150px', height: '150px'}} 
+                                        src={item.image}/>
+                                        {item.name}
+                                    </div>
+                                </div>
+                            )
+                        })}
                     </div>
                 </div>
-                <div>
-                    <a>
-                        <i></i>
-                        22 friends
-                    </a>
-                </div>
             </div>
+        </div>
         )
-    }
-}
+}}
